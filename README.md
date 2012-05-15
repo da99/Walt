@@ -2,7 +2,18 @@
 Walt
 ================
 
-A Ruby gem.
+A Ruby gem providing simple line and blockquote parsing (w/o paragraphs):
+
+    This is a line.
+    This is a line with a block:
+      
+      I am a block.
+
+    # -->
+    [ 
+      [ String, nil],
+      [ String, "I am a block"]
+    ]
 
 Installation
 ------------
@@ -14,7 +25,7 @@ Usage
 
     require "Walt"
     
-    Walt
+    Walt str
 
 
 Run Tests
