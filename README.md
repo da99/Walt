@@ -11,8 +11,8 @@ A Ruby gem providing simple line and blockquote parsing (w/o paragraphs):
 
     # -->
     [ 
-      [ String, nil],
-      [ String, "I am a block"]
+      [ "This is a line.", nil],
+      [ "This is a line with a block", "  I am a block."]
     ]
 
 Installation

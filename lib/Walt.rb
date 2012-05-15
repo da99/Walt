@@ -45,6 +45,8 @@ module Kernel
       last  = pair.last
       
       if last
+        last.shift if last.first.strip.empty?
+        last.pop   if last.last.strip.empty?
         last = last.join("\n")
       end
       
