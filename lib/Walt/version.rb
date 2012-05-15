@@ -1,1 +1,1 @@
-Walt_Version = "0.1.0"
+Walt_Version = "0.1.1"
