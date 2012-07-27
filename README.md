@@ -5,15 +5,36 @@ Walt
 A Ruby gem providing simple line and blockquote parsing (w/o paragraphs):
 
     This is a line.
+    This is a 2-line
+      line.
     This is a line with a block:
       
       I am a block.
+      I am also part of a block.
 
     # -->
     [ 
-      [ "This is a line.", nil],
-      [ "This is a line with a block", "  I am a block."]
+      [ "This is a line", nil],
+      [ "This is a 2-line line", nil],
+      [ "This is a line with a block", "  I am a block.\n  I am also part of a block."]
     ]
+
+The following raises `Walt:Parse\_Error`:
+
+          Bad indentation.
+          
+    # -----------------------
+    
+    Multi-line with an
+      
+      an empty line in between.
+
+    # -----------------------
+    
+    A block without:
+      surrounding blank lines.
+      
+
 
 Installation
 ------------

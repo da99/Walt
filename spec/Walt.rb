@@ -1,26 +1,34 @@
 
-describe "Walt" do
+describe "Walt sentences" do
   
-  it "parses example from README.md" do
+  it "multiple sentences." do
     Walt(%@
     This is a line.
-    This is a line with a block:
-      
-      I am a block.
-
-
+    This is another line.
     @).should == [ 
       [ "This is a line.", nil],
-      [ "This is a line with a block", "  I am a block."]
+      [ "This is another line.", nil]
+    ]
+  end
+  
+  it "multiple sentences separated by whitespace lines." do
+    Walt(%@
+    This is a line.
+       
+    This is line 2.
+              
+    This is line 3.
+         
+    @).should == [ 
+      [ "This is a line.", nil],
+      [ "This is line 2.", nil],
+      [ "This is line 3.", nil],
     ]
   end
 
-  it "parses lines" do
-    Walt(%@
-      This is A.
-      This is B.
-    @).should == [["This is A.", nil], ["This is B.", nil]]
-  end
+end # === Walt sentences
+
+describe "Walt blocks" do
 
   it "parses blocks surrounded by empty lines of spaces with irregular indentation." do
     Walt(%@
@@ -51,5 +59,5 @@ describe "Walt" do
     @).should == ["This is A.", "This is :memory:", "This is B."].zip([nil, nil, nil])
   end
 
-end # === Walt
+end # === Walt blocks
 
