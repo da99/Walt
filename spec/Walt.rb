@@ -1,5 +1,5 @@
 
-describe "Walt sentences" do
+describe "Walt parsing sentences" do
   
   it "multiple sentences." do
     Walt(%@
@@ -11,6 +11,17 @@ describe "Walt sentences" do
     ]
   end
   
+  it "sentences continued on another line" do
+    Walt(%@
+    This is a line.
+    This is a 
+      continued line.
+    @).should == [ 
+      [ "This is a line.", nil],
+      [ "This is a    continued line.", nil]
+    ]
+  end
+
   it "multiple sentences separated by whitespace lines." do
     Walt(%@
     This is a line.
@@ -37,7 +48,7 @@ describe "Walt blocks" do
           
         Block
        
-    @).should == [["This is A.", nil], ["This is B", "  Block"] ]
+    @).should == [["This is A.", nil], ["This is B:", "  Block"] ]
   end
   
   it "removes empty lines surrounding block" do
@@ -48,7 +59,7 @@ describe "Walt blocks" do
         Block line 1.
         Block line 2.
        
-    @).should == [["This is A.", nil], ["This is B", "  Block line 1.\n  Block line 2."] ]
+    @).should == [["This is A.", nil], ["This is B:", "  Block line 1.\n  Block line 2."] ]
   end
   
   it "does not remove last colon if line has no block." do
@@ -56,8 +67,17 @@ describe "Walt blocks" do
       This is A.
       This is :memory:
       This is B.
-    @).should == ["This is A.", "This is :memory:", "This is B."].zip([nil, nil, nil])
+    @).should == ["This is A.", "This is :memory:", "This is B."].zip([nil, '', nil])
   end
 
 end # === Walt blocks
+
+__END__
+describe "Walt parsing errors" do
+  
+  it "raises Parse_Error " do
+    
+  end
+  
+end # === Walt parsing errors
 
