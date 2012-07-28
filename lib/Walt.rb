@@ -111,6 +111,9 @@ module Kernel
       
     end # === while
 
+    if walt.in_sentence?
+      raise Walt::Parse_Error, "Incomplete sentence: #{walt.last_line}"
+    end
 
     walt.array.map { |pair|
       

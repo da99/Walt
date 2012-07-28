@@ -72,11 +72,16 @@ describe "Walt blocks" do
 
 end # === Walt blocks
 
-__END__
 describe "Walt parsing errors" do
   
-  it "raises Parse_Error " do
-    
+  it "raises Parse_Error if an incomplete sentence is found" do
+    lambda {
+      Walt(%@
+        This is one line.
+        This is an incomp sent
+      @)
+    }.should.raise(Walt::Parse_Error)
+    .message.should.match %r!incomp sent!
   end
   
 end # === Walt parsing errors
