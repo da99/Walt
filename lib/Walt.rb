@@ -97,7 +97,12 @@ module Kernel
       
       # Are we continuing a previous sentence?
       if walt.in_sentence? 
-        # See if sentence ends or continues.
+
+        # Error check: Start of block not allowed after incomplete sentence.
+        if walt.start_of_block?(l)
+          raise(Walt::Parse_Error, "Incomplete sentence before block: #{walt.last_line}")
+        end
+
         walt.append_to_line( line )
         next
       end
@@ -111,6 +116,8 @@ module Kernel
       
     end # === while
 
+    # Finished parsing.
+    # Error checking on incomplete sentence.
     if walt.in_sentence?
       raise Walt::Parse_Error, "Incomplete sentence: #{walt.last_line}"
     end

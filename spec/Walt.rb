@@ -72,9 +72,9 @@ describe "Walt blocks" do
 
 end # === Walt blocks
 
-describe "Walt parsing errors" do
+describe "Walt raising Parse_Error" do
   
-  it "raises Parse_Error if an incomplete sentence is found" do
+  it "if incomplete sentence is found" do
     lambda {
       Walt(%@
         This is one line.
@@ -82,6 +82,18 @@ describe "Walt parsing errors" do
       @)
     }.should.raise(Walt::Parse_Error)
     .message.should.match %r!incomp sent!
+  end
+
+  it "if incomplete sentence is found before start of a block" do
+    lambda {
+      Walt(%@
+        This is one line.
+        This is an incomp sent
+        This is a block:
+          Block
+      @)
+    }.should.raise(Walt::Parse_Error)
+    .message.should.match %r!incomp sent\Z!
   end
   
 end # === Walt parsing errors
