@@ -1,4 +1,13 @@
 
+This is obsolete:
+================
+
+This project is no longer maintained.
+
+If you want
+a node/npm version of this project, try looking at this one:
+[englishy\_parser](https://github.com/da99/englishy_parser)
+
 Walt
 ================
 
@@ -8,12 +17,12 @@ A Ruby gem providing simple line and blockquote parsing (w/o paragraphs):
     This is a 2-line
       line.
     This is a line with a block:
-      
+
       I am a block.
       I am also part of a block.
 
     # -->
-    [ 
+    [
       [ "This is a line", nil],
       [ "This is a 2-line line", nil],
       [ "This is a line with a block", "  I am a block.\n  I am also part of a block."]
@@ -22,18 +31,18 @@ A Ruby gem providing simple line and blockquote parsing (w/o paragraphs):
 The following raises `Walt:Parse\_Error`:
 
           Bad indentation.
-          
+
     # -----------------------
-    
+
     Multi-line with an
-      
+
       an empty line in between.
 
     # -----------------------
-    
+
     A block without:
       surrounding blank lines.
-      
+
 
 
 Installation
@@ -45,7 +54,7 @@ Usage
 ------
 
     require "Walt"
-    
+
     Walt str
 
 
