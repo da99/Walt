@@ -6,7 +6,7 @@ This project is no longer maintained.
 
 If you want
 a node/npm version of this project, try looking at this one:
-[englishy\_parser](https://github.com/da99/englishy_parser)
+[englishy](https://github.com/da99/englishy)
 
 Walt
 ================
